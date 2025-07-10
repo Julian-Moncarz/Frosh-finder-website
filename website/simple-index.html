@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UofT Instagram Posts - All Posts Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #002a5c, #0066cc);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .search-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #0066cc;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #004499;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .stats {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: start;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #0066cc;
+        }
+
+        .post-header {
+            background: linear-gradient(45deg, #0066cc, #004499);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .post-type {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .post-body {
+            padding: 20px;
+        }
+
+        .post-caption {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .post-caption.collapsed {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-caption.expanded {
+            max-height: none;
+            display: block;
+        }
+
+        .show-more-btn {
+            background: none;
+            border: none;
+            color: #0066cc;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: underline;
+            padding: 0;
+            margin-top: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .show-more-btn:hover {
+            color: #004499;
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .view-post-btn {
+            background: #0066cc;
+            color: white;
+        }
+
+        .view-post-btn:hover {
+            background: #004499;
+            transform: translateY(-1px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .error {
+            text-align: center;
+            padding: 20px;
+            background: #ffebee;
+            color: #c62828;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .no-results h3 {
+            margin-bottom: 10px;
+        }
+
+        .clear-search {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .clear-search:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 UofT Instagram Posts</h1>
+            <p>Search through all posts from @uoft_frosh.29</p>
+        </div>
+
+        <div id="loadingSection" class="loading">
+            📊 Loading posts...
+        </div>
+
+        <div id="errorSection" class="error" style="display: none;"></div>
+
+        <div id="mainContent" style="display: none;">
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search posts... (case-insensitive)" onkeyup="handleSearchKeypress(event)">
+                    <button class="search-btn" onclick="handleSearch()">🔍</button>
+                    <button class="clear-search" onclick="clearSearch()" style="display: none;" id="clearBtn">Clear</button>
+                </div>
+            </div>
+
+            <div id="statsSection" class="stats"></div>
+            <div id="postsGrid" class="posts-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        let allPosts = [];
+        let filteredPosts = [];
+
+        function handleSearchKeypress(event) {
+            if (event.key === 'Enter') {
+                handleSearch();
+            }
+        }
+
+        // Load posts on page load
+        document.addEventListener('DOMContentLoaded', loadPosts);
+
+        async function loadPosts() {
+            try {
+                const response = await fetch('./all-posts.json');
+                if (!response.ok) {
+                    throw new Error(`Failed to load posts: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                allPosts = data.posts || [];
+                filteredPosts = [...allPosts];
+                
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                updateStats(data);
+                displayPosts(filteredPosts);
+                
+            } catch (error) {
+                document.getElementById('loadingSection').style.display = 'none';
+                showError(`Failed to load posts: ${error.message}`);
+            }
+        }
+
+        function updateStats(data) {
+            const statsHtml = `
+                📊 <strong>${data.posts_with_captions}</strong> posts loaded 
+                | 📝 <strong>${data.total_posts}</strong> total posts in database
+                | 📅 Updated: ${new Date(data.generated_at).toLocaleDateString()}
+            `;
+            document.getElementById('statsSection').innerHTML = statsHtml;
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (query) {
+                // Case-insensitive search through post captions
+                filteredPosts = allPosts.filter(post => {
+                    return post.caption.toLowerCase().includes(query);
+                });
+                
+                document.getElementById('clearBtn').style.display = 'inline-block';
+                updateStatsWithSearch(query);
+            } else {
+                clearSearch();
+            }
+            
+            displayPosts(filteredPosts);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearBtn').style.display = 'none';
+            filteredPosts = [...allPosts];
+            displayPosts(filteredPosts);
+            
+            const statsHtml = `
+                📊 Showing <strong>${allPosts.length}</strong> posts
+            `;
+            document.getElementById('statsSection').innerHTML = statsHtml;
+        }
+
+        function updateStatsWithSearch(query) {
+            const statsHtml = `
+                📊 Found <strong>${filteredPosts.length}</strong> of <strong>${allPosts.length}</strong> posts
+                | 🔍 Search: "${query}"
+            `;
+            document.getElementById('statsSection').innerHTML = statsHtml;
+        }
+
+        function displayPosts(posts) {
+            const grid = document.getElementById('postsGrid');
+            
+            if (posts.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <h3>😔 No posts found</h3>
+                        <p>Try a different search term</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = posts.map((post, index) => createPostCard(post, index)).join('');
+        }
+
+        function toggleCaption(cardId) {
+            const caption = document.getElementById(`caption-${cardId}`);
+            const button = document.getElementById(`btn-${cardId}`);
+            
+            if (caption.classList.contains('collapsed')) {
+                caption.classList.remove('collapsed');
+                caption.classList.add('expanded');
+                button.textContent = 'Show Less';
+            } else {
+                caption.classList.remove('expanded');
+                caption.classList.add('collapsed');
+                button.textContent = 'Show More';
+            }
+        }
+
+        function createPostCard(post, index) {
+            const isLongPost = post.caption.length > 400; // Threshold for show more
+            const cardId = `post-${index}`;
+            
+            return `
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-date">${post.date || 'No date'}</div>
+                        <div class="post-type">${post.post_type || 'Post'}</div>
+                    </div>
+                    
+                    <div class="post-body">
+                        <div class="post-caption ${isLongPost ? 'collapsed' : ''}" id="caption-${cardId}">
+                            ${post.caption}
+                        </div>
+                        
+                        ${isLongPost ? `
+                        <button class="show-more-btn" onclick="toggleCaption('${cardId}')" id="btn-${cardId}">
+                            Show More (${post.caption.length} chars)
+                        </button>
+                        ` : ''}
+                        
+                        ${post.likes > 0 || post.comments > 0 ? `
+                        <div class="post-stats">
+                            ${post.likes > 0 ? `<span>❤️ ${post.likes}</span>` : ''}
+                            ${post.comments > 0 ? `<span>💬 ${post.comments}</span>` : ''}
+                            ${post.has_images ? `<span>📷 Has Images</span>` : ''}
+                        </div>
+                        ` : ''}
+                        
+                        <div class="post-actions">
+                            <a href="${post.post_url}" target="_blank" class="action-btn view-post-btn">
+                                👁️ View on Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            document.getElementById('errorSection').innerHTML = `
+                <h3>⚠️ Error</h3>
+                <p>${message}</p>
+                <p>Make sure both simple-index.html and all-posts.json are in the same directory.</p>
+            `;
+            document.getElementById('errorSection').style.display = 'block';
+        }
+    </script>
+</body>
+</html> 

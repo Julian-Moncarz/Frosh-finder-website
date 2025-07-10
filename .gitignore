@@ -31,12 +31,19 @@ ENV/
 env.bak/
 venv.bak/
 
-# Screenshots and output data
+# Output data from API extraction
+instagram_captions/
+*_captions_*.json
+*_captions_*.txt
+
+# Legacy screenshots and OCR output (moved to outdated/)
 instagram_screenshots/
 *.png
 *.jpg
 *.jpeg
 screenshot_index.txt
+*_caption.txt
+ocr_processing_report.txt
 
 # IDE
 .vscode/
@@ -69,6 +76,16 @@ geckodriver*
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Credentials (if any)
+# Credentials and API keys
 credentials.json
-config.json 
+config.json
+*.key
+api_key.txt
+
+# Debug and response files
+debug_profile_response.json
+*_response.json
+
+# Data and outdated folders (not for git)
+data/
+outdated/ 
