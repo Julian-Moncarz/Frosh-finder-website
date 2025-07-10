@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""
-Simple All Posts Builder - Shows every post with caption and link
-No fancy AI processing, just raw searchable post data
-"""
-
 import json
 from pathlib import Path
 from datetime import datetime
