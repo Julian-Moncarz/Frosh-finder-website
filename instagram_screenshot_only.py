@@ -145,16 +145,31 @@ class InstagramScreenshotCollector:
         
         self.human_delay(3, 5)  # Wait for post to fully load
         
+        # Debug: Check what URL we're actually on
+        print(f"🌐 Current URL: {self.driver.current_url}")
+        
         screenshot_saved = False
         
         try:
-            # Wait for post to load
-            WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.TAG_NAME, "article"))
-            )
+            # Wait for post to load - try multiple selectors
+            print("🔍 Waiting for post content to load...")
+            try:
+                # Try article tag first
+                WebDriverWait(self.driver, 15).until(
+                    EC.presence_of_element_located((By.TAG_NAME, "article"))
+                )
+                print("✅ Article found")
+            except TimeoutException:
+                print("⚠️  Article not found, trying main content...")
+                # Try main content area
+                WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((By.TAG_NAME, "main"))
+                )
+                print("✅ Main content found")
             
             # Wait a moment for everything to render (no scrolling to keep caption visible)
-            self.human_delay(1, 2)
+            print("⏳ Waiting for content to fully render...")
+            self.human_delay(2, 4)
             
             # Create output directory
             output_dir = "instagram_screenshots"
@@ -190,6 +205,25 @@ class InstagramScreenshotCollector:
         
         except TimeoutException:
             print("⏰ Timeout waiting for post to load")
+            print("📸 Attempting screenshot anyway...")
+            
+            # Fallback: try to take screenshot anyway
+            try:
+                output_dir = "instagram_screenshots"
+                os.makedirs(output_dir, exist_ok=True)
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:-3]
+                screenshot_filename = f"post_{post_number:03d}_{timestamp}_fallback.png"
+                screenshot_path = os.path.join(output_dir, screenshot_filename)
+                
+                success = self.driver.save_screenshot(screenshot_path)
+                if success:
+                    file_size = os.path.getsize(screenshot_path) / 1024
+                    print(f"✅ Fallback screenshot saved: {screenshot_filename} ({file_size:.1f} KB)")
+                    screenshot_saved = True
+                else:
+                    print("❌ Fallback screenshot failed")
+            except Exception as fallback_error:
+                print(f"❌ Fallback screenshot error: {fallback_error}")
         except Exception as e:
             print(f"❌ Error taking screenshot: {e}")
         
@@ -289,7 +323,7 @@ class InstagramScreenshotCollector:
 
 def main():
     username = "uoft_frosh.29"
-    max_posts = 5  # Get 5 screenshots for testing
+    max_posts = 3  # Get 3 screenshots for testing
     
     print("Instagram Screenshot Collector")
     print("Takes screenshots of Instagram posts for manual review")
