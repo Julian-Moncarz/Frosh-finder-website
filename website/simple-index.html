@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U of T Frosh Finder - Search All the Posts From @uoft_frosh.29</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafafa;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: #1E3765;
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(30, 55, 101, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .search-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input-container {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #4fd1c7;
+            box-shadow: 0 0 20px rgba(79, 209, 199, 0.2);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1E3765;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #2850a0;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .stats {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: start;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #1E3765;
+        }
+
+        .post-header {
+            background: #1E3765;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .post-type {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .post-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-caption {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 15px;
+            margin: 10px 0 15px 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .view-post-btn {
+            background: white;
+            color: #333;
+            border: 2px solid #333;
+        }
+
+        .view-post-btn:hover {
+            background: #1E3765;
+            color: white;
+            border: 2px solid transparent;
+            transform: translateY(-1px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .error {
+            text-align: center;
+            padding: 20px;
+            background: #ffebee;
+            color: #c62828;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .no-results h3 {
+            margin-bottom: 10px;
+        }
+
+        .clear-search {
+            background: #1E3765;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .clear-search:hover {
+            background: #2850a0;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>U of T Frosh Finder</h1>
+            <p>Search through 2000+ posts from @uoft_frosh.29</p>
+            <p>Instagram has no search feature - that sucks lets fix it.</p>
+            <p>Website by Julian Moncarz (inverted_badger on Discord)</p>
+            <p>Github repo - https://github.com/Julian-Moncarz/Frosh-finder-website</p>
+        </div>
+
+        <div id="loadingSection" class="loading">
+            ✨ Loading posts...
+        </div>
+
+        <div id="errorSection" class="error" style="display: none;"></div>
+
+        <div id="mainContent" style="display: none;">
+            <div class="search-section">
+                <div class="search-box">
+                    <div class="search-input-container">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search introductions by name, program, interests, year, date..." onkeyup="handleSearchKeypress(event)">
+                        <button class="search-btn" onclick="handleSearch()">🔍</button>
+                    </div>
+                    <button class="clear-search" onclick="clearSearch()" style="display: none;" id="clearBtn">Clear</button>
+                </div>
+            </div>
+
+            <div id="statsSection" class="stats"></div>
+            <div id="postsGrid" class="posts-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        let allPosts = [];
+        let filteredPosts = [];
+
+        function handleSearchKeypress(event) {
+            if (event.key === 'Enter') {
+                handleSearch();
+            }
+        }
+
+        // Load posts on page load
+        document.addEventListener('DOMContentLoaded', loadPosts);
+
+        async function loadPosts() {
+            try {
+                const response = await fetch('./all-posts.json');
+                if (!response.ok) {
+                    throw new Error(`Failed to load posts: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                allPosts = data.posts || [];
+                filteredPosts = [...allPosts];
+                
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                updateStats(data);
+                displayPosts(filteredPosts);
+                
+            } catch (error) {
+                document.getElementById('loadingSection').style.display = 'none';
+                showError(`Failed to load posts: ${error.message}`);
+            }
+        }
+
+        function updateStats(data) {
+            const statsHtml = `
+                <strong>${allPosts.length}</strong> posts available to search
+                | Updated: ${new Date(data.generated_at).toLocaleDateString()}
+            `;
+            document.getElementById('statsSection').innerHTML = statsHtml;
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (query) {
+                // Search through introduction captions and dates
+                filteredPosts = allPosts.filter(post => {
+                    const captionMatch = post.caption.toLowerCase().includes(query);
+                    const dateMatch = post.date && post.date.toLowerCase().includes(query);
+                    return captionMatch || dateMatch;
+                });
+                
+                document.getElementById('clearBtn').style.display = 'inline-block';
+                updateStatsWithSearch(query);
+            } else {
+                clearSearch();
+            }
+            
+            displayPosts(filteredPosts);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearBtn').style.display = 'none';
+            filteredPosts = [...allPosts];
+            displayPosts(filteredPosts);
+            
+            const statsHtml = `
+                Showing <strong>${allPosts.length}</strong> posts
+            `;
+            document.getElementById('statsSection').innerHTML = statsHtml;
+        }
+
+        function updateStatsWithSearch(query) {
+            const statsHtml = `
+                Found <strong>${filteredPosts.length}</strong> matching posts
+                | Search: "${query}"
+            `;
+            document.getElementById('statsSection').innerHTML = statsHtml;
+        }
+
+        function displayPosts(posts) {
+            const grid = document.getElementById('postsGrid');
+            
+            if (posts.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <h3>😔 No posts found</h3>
+                        <p>Try searching for names, programs (like "engineering"), interests, years (like "2025"), or dates</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = posts.map((post, index) => createPostCard(post, index)).join('');
+        }
+
+        function convertInstagramHandles(text) {
+            // Regex to match @username patterns (allows letters, numbers, periods, underscores)
+            return text.replace(/@([a-zA-Z0-9._]+)/g, '<a href="https://instagram.com/$1" target="_blank" style="color: #1E3765; text-decoration: none; font-weight: 500;">@$1</a>');
+        }
+
+        function createPostCard(post, index) {
+            return `
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-date">${post.date || 'No date'}</div>
+                        <div class="post-type">${post.post_type || 'Post'}</div>
+                    </div>
+                    
+                    <div class="post-body">
+                        <div class="post-caption">
+                            ${convertInstagramHandles(post.caption)}
+                        </div>
+                        
+                        ${post.likes > 0 || post.comments > 0 ? `
+                        <div class="post-stats">
+                            ${post.likes > 0 ? `<span>❤️ ${post.likes}</span>` : ''}
+                            ${post.comments > 0 ? `<span>💬 ${post.comments}</span>` : ''}
+                            ${post.has_images ? `<span>📷 Has Images</span>` : ''}
+                        </div>
+                        ` : ''}
+                        
+                        <div class="post-actions">
+                            <a href="${post.post_url}" target="_blank" class="action-btn view-post-btn">
+                                View on Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            document.getElementById('errorSection').innerHTML = `
+                <h3>⚠️ Error</h3>
+                <p>${message}</p>
+                <p>Make sure both simple-index.html and all-posts.json are in the same directory.</p>
+            `;
+            document.getElementById('errorSection').style.display = 'block';
+        }
+    </script>
+</body>
+</html> 
