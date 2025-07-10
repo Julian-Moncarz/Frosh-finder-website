@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UofT Instagram Posts - All Posts Search</title>
+    <title>U of T Frosh Finder - Search All the Posts From @uoft_frosh.29</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,8 +13,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafafa;
             min-height: 100vh;
             color: #333;
         }
@@ -25,13 +26,13 @@
         }
 
         .header {
-            background: linear-gradient(45deg, #002a5c, #0066cc);
+            background: #1E3765;
             color: white;
             padding: 30px;
             border-radius: 20px;
             text-align: center;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(30, 55, 101, 0.3);
         }
 
         .header h1 {
@@ -57,6 +58,14 @@
             position: relative;
             max-width: 600px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input-container {
+            position: relative;
+            flex: 1;
         }
 
         .search-input {
@@ -70,8 +79,8 @@
         }
 
         .search-input:focus {
-            border-color: #0066cc;
-            box-shadow: 0 0 20px rgba(0, 102, 204, 0.1);
+            border-color: #4fd1c7;
+            box-shadow: 0 0 20px rgba(79, 209, 199, 0.2);
         }
 
         .search-btn {
@@ -79,7 +88,7 @@
             right: 5px;
             top: 50%;
             transform: translateY(-50%);
-            background: #0066cc;
+            background: #1E3765;
             color: white;
             border: none;
             width: 40px;
@@ -90,7 +99,7 @@
         }
 
         .search-btn:hover {
-            background: #004499;
+            background: #2850a0;
             transform: translateY(-50%) scale(1.1);
         }
 
@@ -118,16 +127,18 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
         }
 
         .post-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border-color: #0066cc;
+            border-color: #1E3765;
         }
 
         .post-header {
-            background: linear-gradient(45deg, #0066cc, #004499);
+            background: #1E3765;
             color: white;
             padding: 15px 20px;
             display: flex;
@@ -149,49 +160,23 @@
 
         .post-body {
             padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .post-caption {
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 16px;
+            line-height: 1.6;
             color: #333;
             margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .post-caption.collapsed {
-            display: -webkit-box;
-            -webkit-line-clamp: 6;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .post-caption.expanded {
-            max-height: none;
-            display: block;
-        }
-
-        .show-more-btn {
-            background: none;
-            border: none;
-            color: #0066cc;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            text-decoration: underline;
-            padding: 0;
-            margin-top: 8px;
-            transition: color 0.3s ease;
-        }
-
-        .show-more-btn:hover {
-            color: #004499;
+            flex: 1;
         }
 
         .post-stats {
             display: flex;
             gap: 15px;
-            margin-bottom: 15px;
+            margin: 10px 0 15px 0;
             font-size: 12px;
             color: #666;
         }
@@ -199,6 +184,7 @@
         .post-actions {
             display: flex;
             gap: 10px;
+            margin-top: auto;
         }
 
         .action-btn {
@@ -216,12 +202,15 @@
         }
 
         .view-post-btn {
-            background: #0066cc;
-            color: white;
+            background: white;
+            color: #333;
+            border: 2px solid #333;
         }
 
         .view-post-btn:hover {
-            background: #004499;
+            background: #1E3765;
+            color: white;
+            border: 2px solid transparent;
             transform: translateY(-1px);
         }
 
@@ -252,30 +241,34 @@
         }
 
         .clear-search {
-            background: #ff6b6b;
+            background: #1E3765;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 16px;
             border-radius: 20px;
             cursor: pointer;
-            margin-left: 10px;
             font-size: 14px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .clear-search:hover {
-            background: #ff5252;
+            background: #2850a0;
+            transform: translateY(-1px);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📱 UofT Instagram Posts</h1>
-            <p>Search through all posts from @uoft_frosh.29</p>
+            <h1>U of T Frosh Finder</h1>
+            <p>Search through 2000+ posts from @uoft_frosh.29</p>
+            <p>Instagram has no search feature - that sucks lets fix it.</p>
+            <p>Website by Julian Moncarz (inverted_badger on Discord)</p>
         </div>
 
         <div id="loadingSection" class="loading">
-            📊 Loading posts...
+            ✨ Loading posts...
         </div>
 
         <div id="errorSection" class="error" style="display: none;"></div>
@@ -283,8 +276,10 @@
         <div id="mainContent" style="display: none;">
             <div class="search-section">
                 <div class="search-box">
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search posts... (case-insensitive)" onkeyup="handleSearchKeypress(event)">
-                    <button class="search-btn" onclick="handleSearch()">🔍</button>
+                    <div class="search-input-container">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search introductions by name, program, interests, year, date..." onkeyup="handleSearchKeypress(event)">
+                        <button class="search-btn" onclick="handleSearch()">🔍</button>
+                    </div>
                     <button class="clear-search" onclick="clearSearch()" style="display: none;" id="clearBtn">Clear</button>
                 </div>
             </div>
@@ -331,9 +326,8 @@
 
         function updateStats(data) {
             const statsHtml = `
-                📊 <strong>${data.posts_with_captions}</strong> posts loaded 
-                | 📝 <strong>${data.total_posts}</strong> total posts in database
-                | 📅 Updated: ${new Date(data.generated_at).toLocaleDateString()}
+                <strong>${allPosts.length}</strong> posts available to search
+                | Updated: ${new Date(data.generated_at).toLocaleDateString()}
             `;
             document.getElementById('statsSection').innerHTML = statsHtml;
         }
@@ -342,9 +336,11 @@
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             
             if (query) {
-                // Case-insensitive search through post captions
+                // Search through introduction captions and dates
                 filteredPosts = allPosts.filter(post => {
-                    return post.caption.toLowerCase().includes(query);
+                    const captionMatch = post.caption.toLowerCase().includes(query);
+                    const dateMatch = post.date && post.date.toLowerCase().includes(query);
+                    return captionMatch || dateMatch;
                 });
                 
                 document.getElementById('clearBtn').style.display = 'inline-block';
@@ -363,15 +359,15 @@
             displayPosts(filteredPosts);
             
             const statsHtml = `
-                📊 Showing <strong>${allPosts.length}</strong> posts
+                Showing <strong>${allPosts.length}</strong> posts
             `;
             document.getElementById('statsSection').innerHTML = statsHtml;
         }
 
         function updateStatsWithSearch(query) {
             const statsHtml = `
-                📊 Found <strong>${filteredPosts.length}</strong> of <strong>${allPosts.length}</strong> posts
-                | 🔍 Search: "${query}"
+                Found <strong>${filteredPosts.length}</strong> matching posts
+                | Search: "${query}"
             `;
             document.getElementById('statsSection').innerHTML = statsHtml;
         }
@@ -383,7 +379,7 @@
                 grid.innerHTML = `
                     <div class="no-results" style="grid-column: 1 / -1;">
                         <h3>😔 No posts found</h3>
-                        <p>Try a different search term</p>
+                        <p>Try searching for names, programs (like "engineering"), interests, years (like "2025"), or dates</p>
                     </div>
                 `;
                 return;
@@ -392,25 +388,12 @@
             grid.innerHTML = posts.map((post, index) => createPostCard(post, index)).join('');
         }
 
-        function toggleCaption(cardId) {
-            const caption = document.getElementById(`caption-${cardId}`);
-            const button = document.getElementById(`btn-${cardId}`);
-            
-            if (caption.classList.contains('collapsed')) {
-                caption.classList.remove('collapsed');
-                caption.classList.add('expanded');
-                button.textContent = 'Show Less';
-            } else {
-                caption.classList.remove('expanded');
-                caption.classList.add('collapsed');
-                button.textContent = 'Show More';
-            }
+        function convertInstagramHandles(text) {
+            // Regex to match @username patterns (allows letters, numbers, periods, underscores)
+            return text.replace(/@([a-zA-Z0-9._]+)/g, '<a href="https://instagram.com/$1" target="_blank" style="color: #1E3765; text-decoration: none; font-weight: 500;">@$1</a>');
         }
 
         function createPostCard(post, index) {
-            const isLongPost = post.caption.length > 400; // Threshold for show more
-            const cardId = `post-${index}`;
-            
             return `
                 <div class="post-card">
                     <div class="post-header">
@@ -419,15 +402,9 @@
                     </div>
                     
                     <div class="post-body">
-                        <div class="post-caption ${isLongPost ? 'collapsed' : ''}" id="caption-${cardId}">
-                            ${post.caption}
+                        <div class="post-caption">
+                            ${convertInstagramHandles(post.caption)}
                         </div>
-                        
-                        ${isLongPost ? `
-                        <button class="show-more-btn" onclick="toggleCaption('${cardId}')" id="btn-${cardId}">
-                            Show More (${post.caption.length} chars)
-                        </button>
-                        ` : ''}
                         
                         ${post.likes > 0 || post.comments > 0 ? `
                         <div class="post-stats">
@@ -439,7 +416,7 @@
                         
                         <div class="post-actions">
                             <a href="${post.post_url}" target="_blank" class="action-btn view-post-btn">
-                                👁️ View on Instagram
+                                View on Instagram
                             </a>
                         </div>
                     </div>
