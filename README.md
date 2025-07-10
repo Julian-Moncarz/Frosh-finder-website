@@ -8,9 +8,6 @@ A searchable web interface for University of Toronto frosh introduction posts fr
 
 Instagram doesn't have a search feature for posts - this sucks if you are looking for a roommate in a specific building or want to find people in your major. This tool solves that problem by providing a clean, searchable interface for all the frosh introduction posts.
 
-## How I got the data
-
-Don't worry about it.
 
 ## Contact
 
