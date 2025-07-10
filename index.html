@@ -277,7 +277,7 @@
             <div class="search-section">
                 <div class="search-box">
                     <div class="search-input-container">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search introductions by name, program, interests, year, date..." onkeyup="handleSearchKeypress(event)">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search by multiple words (e.g., 'engineering roommate' or 'computer science 2025')..." onkeyup="handleSearchKeypress(event)">
                         <button class="search-btn" onclick="handleSearch()">🔍</button>
                     </div>
                     <button class="clear-search" onclick="clearSearch()" style="display: none;" id="clearBtn">Clear</button>
@@ -336,11 +336,17 @@
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             
             if (query) {
+                // Split query into individual words (removing empty strings)
+                const searchWords = query.split(/\s+/).filter(word => word.length > 0);
+                
                 // Search through introduction captions and dates
                 filteredPosts = allPosts.filter(post => {
-                    const captionMatch = post.caption.toLowerCase().includes(query);
-                    const dateMatch = post.date && post.date.toLowerCase().includes(query);
-                    return captionMatch || dateMatch;
+                    const captionText = post.caption.toLowerCase();
+                    const dateText = post.date ? post.date.toLowerCase() : '';
+                    const combinedText = captionText + ' ' + dateText;
+                    
+                    // Check if ALL search words are present in the post
+                    return searchWords.every(word => combinedText.includes(word));
                 });
                 
                 document.getElementById('clearBtn').style.display = 'inline-block';
@@ -379,7 +385,7 @@
                 grid.innerHTML = `
                     <div class="no-results" style="grid-column: 1 / -1;">
                         <h3>😔 No posts found</h3>
-                        <p>Try searching for names, programs (like "engineering"), interests, years (like "2025"), or dates</p>
+                        <p>Try searching with multiple words like "engineering roommate" or "computer science 2025". All words must be present in the post.</p>
                     </div>
                 `;
                 return;
