@@ -10,7 +10,7 @@ Instagram doesn't have a search feature for posts - this sucks if you are lookin
 
 ## Automated Updates
 
-The site now automatically updates with new posts. rss.app lets you turn any Instagram account's posts into an rss feed. 
+The site now automatically updates with new posts!
 
 1. Instagram posts from @uoft_frosh.29 are converted to RSS using [rss.app](https://rss.app)
 2. GitHub Actions workflow runs every day at 9 AM UTC

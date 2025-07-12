@@ -276,7 +276,10 @@
     <div class="container">
         <div class="header">
             <h1>U of T Frosh Finder</h1>
-            <p>Search all the posts from @uoft_frosh.29 - Find your perfect roommate!</p>
+            <p>Search through thousands of posts from @uoft_frosh.29</p>
+            <p>Instagram has no search feature - that sucks lets fix it.</p>
+            <p>Website by Julian Moncarz (inverted_badger on Discord)</p>
+            <p>Github repo - https://github.com/Julian-Moncarz/Frosh-finder-website</p>
         </div>
 
         <div class="search-section">
@@ -335,9 +338,9 @@
             }
             
             if (filteredPosts.length === allPosts.length) {
-                statsText.textContent = `📊 Showing all ${allPosts.length} posts`;
+                statsText.textContent = `Showing all ${allPosts.length} posts`;
             } else {
-                statsText.textContent = `🔍 Found ${filteredPosts.length} posts (of ${allPosts.length} total)`;
+                statsText.textContent = `Found ${filteredPosts.length} posts (of ${allPosts.length} total)`;
             }
         }
 
