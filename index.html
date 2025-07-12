@@ -151,13 +151,6 @@
             opacity: 0.9;
         }
 
-        .post-type {
-            background: rgba(255,255,255,0.2);
-            padding: 4px 8px;
-            border-radius: 10px;
-            font-size: 12px;
-        }
-
         .post-body {
             padding: 20px;
             flex: 1;
@@ -173,12 +166,16 @@
             flex: 1;
         }
 
-        .post-stats {
-            display: flex;
-            gap: 15px;
-            margin: 10px 0 15px 0;
-            font-size: 12px;
-            color: #666;
+        .post-caption a {
+            color: #1E3765;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .post-caption a:hover {
+            color: #4fd1c7;
+            text-decoration: underline;
         }
 
         .post-actions {
@@ -248,13 +245,30 @@
             border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
+            margin-top: 10px;
         }
 
         .clear-search:hover {
             background: #2850a0;
-            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-input {
+                padding: 12px 45px 12px 15px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -262,182 +276,176 @@
     <div class="container">
         <div class="header">
             <h1>U of T Frosh Finder</h1>
-            <p>Search through 2000+ posts from @uoft_frosh.29</p>
-            <p>Instagram has no search feature - that sucks lets fix it.</p>
-            <p>Website by Julian Moncarz (inverted_badger on Discord)</p>
+            <p>Search all the posts from @uoft_frosh.29 - Find your perfect roommate!</p>
         </div>
 
-        <div id="loadingSection" class="loading">
-            ✨ Loading posts...
-        </div>
-
-        <div id="errorSection" class="error" style="display: none;"></div>
-
-        <div id="mainContent" style="display: none;">
-            <div class="search-section">
-                <div class="search-box">
-                    <div class="search-input-container">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search by multiple words (e.g., 'engineering roommate' or 'computer science 2025')..." onkeyup="handleSearchKeypress(event)">
-                        <button class="search-btn" onclick="handleSearch()">🔍</button>
-                    </div>
-                    <button class="clear-search" onclick="clearSearch()" style="display: none;" id="clearBtn">Clear</button>
+        <div class="search-section">
+            <div class="search-box">
+                <div class="search-input-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search for roommates, programs, residence, interests...">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
                 </div>
             </div>
+        </div>
 
-            <div id="statsSection" class="stats"></div>
-            <div id="postsGrid" class="posts-grid"></div>
+        <div class="stats" id="statsContainer">
+            <div id="statsText">Loading posts...</div>
+        </div>
+
+        <div class="posts-grid" id="postsContainer">
+            <div class="loading">Loading posts...</div>
         </div>
     </div>
 
     <script>
         let allPosts = [];
         let filteredPosts = [];
+        let isLoading = true;
 
-        function handleSearchKeypress(event) {
-            if (event.key === 'Enter') {
-                handleSearch();
-            }
-        }
-
-        // Load posts on page load
-        document.addEventListener('DOMContentLoaded', loadPosts);
-
+        // Load posts from JSON
         async function loadPosts() {
             try {
-                const response = await fetch('./all-posts.json');
+                const response = await fetch('all-posts.json');
                 if (!response.ok) {
-                    throw new Error(`Failed to load posts: ${response.status}`);
+                    throw new Error('Failed to fetch');
                 }
                 
                 const data = await response.json();
                 allPosts = data.posts || [];
-                filteredPosts = [...allPosts];
+                filteredPosts = allPosts;
+                isLoading = false;
                 
-                document.getElementById('loadingSection').style.display = 'none';
-                document.getElementById('mainContent').style.display = 'block';
-                updateStats(data);
-                displayPosts(filteredPosts);
-                
+                updateStats();
+                renderPosts();
             } catch (error) {
-                document.getElementById('loadingSection').style.display = 'none';
-                showError(`Failed to load posts: ${error.message}`);
+                console.error('Error loading posts:', error);
+                document.getElementById('postsContainer').innerHTML = 
+                    '<div class="error">Failed to load posts: ' + error.message + '<br>Make sure both index.html and all-posts.json are in the same directory.</div>';
+                document.getElementById('statsContainer').innerHTML = 
+                    '<div class="error">Error loading data</div>';
             }
         }
 
-        function updateStats(data) {
-            const statsHtml = `
-                <strong>${allPosts.length}</strong> posts available to search
-                | Updated: ${new Date(data.generated_at).toLocaleDateString()}
-            `;
-            document.getElementById('statsSection').innerHTML = statsHtml;
-        }
-
-        function handleSearch() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        // Update statistics display
+        function updateStats() {
+            const statsText = document.getElementById('statsText');
+            if (isLoading) {
+                statsText.textContent = 'Loading posts...';
+                return;
+            }
             
-            if (query) {
-                // Split query into individual words (removing empty strings)
-                const searchWords = query.split(/\s+/).filter(word => word.length > 0);
-                
-                // Search through introduction captions and dates
-                filteredPosts = allPosts.filter(post => {
-                    const captionText = post.caption.toLowerCase();
-                    const dateText = post.date ? post.date.toLowerCase() : '';
-                    const combinedText = captionText + ' ' + dateText;
-                    
-                    // Check if ALL search words are present in the post
-                    return searchWords.every(word => combinedText.includes(word));
-                });
-                
-                document.getElementById('clearBtn').style.display = 'inline-block';
-                updateStatsWithSearch(query);
+            if (filteredPosts.length === allPosts.length) {
+                statsText.textContent = `📊 Showing all ${allPosts.length} posts`;
             } else {
-                clearSearch();
+                statsText.textContent = `🔍 Found ${filteredPosts.length} posts (of ${allPosts.length} total)`;
+            }
+        }
+
+        // Render posts
+        function renderPosts() {
+            const container = document.getElementById('postsContainer');
+            
+            if (isLoading) {
+                container.innerHTML = '<div class="loading">Loading posts...</div>';
+                return;
             }
             
-            displayPosts(filteredPosts);
-        }
-
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('clearBtn').style.display = 'none';
-            filteredPosts = [...allPosts];
-            displayPosts(filteredPosts);
-            
-            const statsHtml = `
-                Showing <strong>${allPosts.length}</strong> posts
-            `;
-            document.getElementById('statsSection').innerHTML = statsHtml;
-        }
-
-        function updateStatsWithSearch(query) {
-            const statsHtml = `
-                Found <strong>${filteredPosts.length}</strong> matching posts
-                | Search: "${query}"
-            `;
-            document.getElementById('statsSection').innerHTML = statsHtml;
-        }
-
-        function displayPosts(posts) {
-            const grid = document.getElementById('postsGrid');
-            
-            if (posts.length === 0) {
-                grid.innerHTML = `
-                    <div class="no-results" style="grid-column: 1 / -1;">
-                        <h3>😔 No posts found</h3>
-                        <p>Try searching with multiple words like "engineering roommate" or "computer science 2025". All words must be present in the post.</p>
+            if (filteredPosts.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <h3>No posts found</h3>
+                        <p>Try different search terms or check your spelling.</p>
+                        <button class="clear-search" onclick="clearSearch()">Show all posts</button>
                     </div>
                 `;
                 return;
             }
-            
-            grid.innerHTML = posts.map((post, index) => createPostCard(post, index)).join('');
-        }
 
-        function convertInstagramHandles(text) {
-            // Regex to match @username patterns (allows letters, numbers, periods, underscores)
-            return text.replace(/@([a-zA-Z0-9._]+)/g, '<a href="https://instagram.com/$1" target="_blank" style="color: #1E3765; text-decoration: none; font-weight: 500;">@$1</a>');
-        }
-
-        function createPostCard(post, index) {
-            return `
+            container.innerHTML = filteredPosts.map(post => `
                 <div class="post-card">
                     <div class="post-header">
-                        <div class="post-date">${post.date || 'No date'}</div>
-                        <div class="post-type">${post.post_type || 'Post'}</div>
+                        <span class="post-date">${formatDate(post.added_at || post.date || 'Unknown date')}</span>
                     </div>
-                    
                     <div class="post-body">
-                        <div class="post-caption">
-                            ${convertInstagramHandles(post.caption)}
-                        </div>
-                        
-                        ${post.likes > 0 || post.comments > 0 ? `
-                        <div class="post-stats">
-                            ${post.likes > 0 ? `<span>❤️ ${post.likes}</span>` : ''}
-                            ${post.comments > 0 ? `<span>💬 ${post.comments}</span>` : ''}
-                            ${post.has_images ? `<span>📷 Has Images</span>` : ''}
-                        </div>
-                        ` : ''}
-                        
+                        <div class="post-caption">${processUsernameMentions(post.caption) || 'No caption available'}</div>
                         <div class="post-actions">
-                            <a href="${post.post_url}" target="_blank" class="action-btn view-post-btn">
-                                View on Instagram
+                            <a href="${post.post_url || '#'}" target="_blank" class="action-btn view-post-btn">
+                                View Post
                             </a>
                         </div>
                     </div>
                 </div>
-            `;
+            `).join('');
         }
 
-        function showError(message) {
-            document.getElementById('errorSection').innerHTML = `
-                <h3>⚠️ Error</h3>
-                <p>${message}</p>
-                <p>Make sure both simple-index.html and all-posts.json are in the same directory.</p>
-            `;
-            document.getElementById('errorSection').style.display = 'block';
+        // Format date for display
+        function formatDate(dateString) {
+            if (!dateString || dateString === 'Unknown date') return 'Unknown date';
+            
+            try {
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return dateString;
+                
+                return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (e) {
+                return dateString;
+            }
         }
+
+        // Convert @username mentions to clickable Instagram profile links
+        function processUsernameMentions(text) {
+            if (!text) return text;
+            
+            // Regex to match @username patterns (letters, numbers, dots, underscores)
+            const usernameRegex = /@([a-zA-Z0-9._]+)/g;
+            
+            return text.replace(usernameRegex, (match, username) => {
+                return `<a href="https://instagram.com/${username}" target="_blank" style="color: #1E3765; text-decoration: none; font-weight: 500;">${match}</a>`;
+            });
+        }
+
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                filteredPosts = allPosts;
+            } else {
+                filteredPosts = allPosts.filter(post => {
+                    const caption = (post.caption || '').toLowerCase();
+                    
+                    // Split search term into words and check if all words are found
+                    const searchWords = searchTerm.split(/\s+/).filter(word => word.length > 0);
+                    return searchWords.every(word => caption.includes(word));
+                });
+            }
+            
+            updateStats();
+            renderPosts();
+        }
+
+        // Clear search
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            filteredPosts = allPosts;
+            updateStats();
+            renderPosts();
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Load posts on page load
+        loadPosts();
     </script>
 </body>
 </html> 

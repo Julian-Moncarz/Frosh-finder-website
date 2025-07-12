@@ -1,0 +1,52 @@
+name: RSS Feed Monitor
+
+on:
+  schedule:
+    # Run once per day at 9 AM UTC (5 AM EST)
+    - cron: '0 9 * * *'
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update even if no new posts'
+        required: false
+        default: 'false'
+
+jobs:
+  check-rss:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'pip'
+        
+    - name: Install dependencies
+      run: |
+        pip install requests feedparser python-dateutil
+        
+    - name: Check RSS feed for new posts and merge with existing
+      run: |
+        python scripts/rss_monitor.py
+      env:
+        RSS_FEED_URL: 'https://rss.app/feeds/50UzjpI64E8EaBUf.xml'
+        FORCE_UPDATE: ${{ github.event.inputs.force_update }}
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "RSS Monitor Bot"
+        git add -A
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🤖 Auto-update: New posts from RSS feed $(date '+%Y-%m-%d %H:%M:%S')"
+          git push
+        fi 
