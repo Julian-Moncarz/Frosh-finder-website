@@ -1,6 +1,11 @@
 {
-  "total_posts": 1853,
+  "total_posts": 1854,
   "posts": [
+    {
+      "caption": "Hihi! My name is Jai and I’m going to UTM for Humanities with hopes to become a senior social sciences teacher in the future. I’m aiming to do a major in Women and Gender Studies and a double minor in Sociology and Theatre. I’ve lived in Mississauga my whole life so I’ll be living at home (hoping to move out next year) but I’m looking to make some new friends to hang with! I work at Square One as well so I’ll almost always be in the area. I love photography, hanging out with friends, casual gaming, playing guitar, and going to concerts. Feel free to reach out whenever! Instagram: @jaime.feggi",
+      "post_url": "https://www.instagram.com/p/DMBmwfFvXun",
+      "added_at": "2025-07-13T09:22:42.949374"
+    },
     {
       "caption": "hi ! i’m sanjali but most people call me san :) i’m from india and i’m super excited to be joining this fall @ st george with a membership to victoria college for social sciences. i love playing my guitar and going on reddit deep dives on silent hill & resident evil haha, feel free to reach out on ig @sanjalipanda (yes my actual surname is panda 😛)",
       "post_url": "https://www.instagram.com/p/DL8n7RUPLaz",
@@ -9269,5 +9274,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-07-12T16:11:47.344712"
+  "last_updated": "2025-07-13T09:22:42.950041"
 }
