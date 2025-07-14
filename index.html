@@ -79,8 +79,8 @@
         }
 
         .search-input:focus {
-            border-color: #4fd1c7;
-            box-shadow: 0 0 20px rgba(79, 209, 199, 0.2);
+            border-color: #1E3765;
+            box-shadow: 0 0 20px rgba(30, 55, 101, 0.2);
         }
 
         .search-btn {
@@ -276,16 +276,14 @@
     <div class="container">
         <div class="header">
             <h1>U of T Frosh Finder</h1>
-            <p>Search through thousands of posts from @uoft_frosh.29</p>
-            <p>Instagram has no search feature - that sucks lets fix it.</p>
+            <p>Search through frosh introductions posts from <a href="https://www.instagram.com/uoft_frosh.29/" target="_blank" rel="noopener" style="color: white; text-decoration: underline;">@uoft_frosh.29</a></p>
             <p>Website by Julian Moncarz (inverted_badger on Discord)</p>
-            <p>Github repo - https://github.com/Julian-Moncarz/Frosh-finder-website</p>
         </div>
 
         <div class="search-section">
             <div class="search-box">
                 <div class="search-input-container">
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search for roommates, programs, residence, interests...">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search for program, residence, interests, etc">
                     <button class="search-btn" onclick="performSearch()">🔍</button>
                 </div>
             </div>
@@ -439,6 +437,20 @@
             renderPosts();
         }
 
+        // Auto-focus search bar on page load (desktop only)
+        function focusSearchBar() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (!isMobile) {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    setTimeout(() => {
+                        searchInput.focus();
+                    }, 100);
+                }
+            }
+        }
+
         // Event listeners
         document.getElementById('searchInput').addEventListener('input', performSearch);
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
@@ -446,6 +458,9 @@
                 performSearch();
             }
         });
+
+        // Auto-focus search bar when page loads
+        window.addEventListener('load', focusSearchBar);
 
         // Load posts on page load
         loadPosts();
