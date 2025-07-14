@@ -48,7 +48,7 @@
 
         .search-section {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             margin-bottom: 30px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
@@ -70,7 +70,7 @@
 
         .search-input {
             width: 100%;
-            padding: 15px 50px 15px 20px;
+            padding: 15px 20px;
             font-size: 16px;
             border: 2px solid #e1e5e9;
             border-radius: 50px;
@@ -83,33 +83,12 @@
             box-shadow: 0 0 20px rgba(30, 55, 101, 0.2);
         }
 
-        .search-btn {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #1E3765;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
 
-        .search-btn:hover {
-            background: #2850a0;
-            transform: translateY(-50%) scale(1.1);
-        }
 
         .stats {
             text-align: center;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 10px 0 0 0;
+            margin-top: 15px;
         }
 
         .posts-grid {
@@ -216,6 +195,8 @@
             padding: 50px;
             color: white;
             font-size: 18px;
+            grid-column: 1 / -1;
+            justify-self: center;
         }
 
         .error {
@@ -225,12 +206,16 @@
             color: #c62828;
             border-radius: 10px;
             margin: 20px 0;
+            grid-column: 1 / -1;
+            justify-self: center;
         }
 
         .no-results {
             text-align: center;
             padding: 50px;
             color: #666;
+            grid-column: 1 / -1;
+            justify-self: center;
         }
 
         .no-results h3 {
@@ -266,7 +251,7 @@
             }
 
             .search-input {
-                padding: 12px 45px 12px 15px;
+                padding: 12px 15px;
                 font-size: 14px;
             }
         }
@@ -284,13 +269,12 @@
             <div class="search-box">
                 <div class="search-input-container">
                     <input type="text" id="searchInput" class="search-input" placeholder="Search for program, residence, interests, etc">
-                    <button class="search-btn" onclick="performSearch()">🔍</button>
                 </div>
             </div>
-        </div>
-
-        <div class="stats" id="statsContainer">
-            <div id="statsText">Loading posts...</div>
+            
+            <div class="stats" id="statsContainer">
+                <div id="statsText">Loading posts...</div>
+            </div>
         </div>
 
         <div class="posts-grid" id="postsContainer">
