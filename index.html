@@ -83,7 +83,64 @@
             box-shadow: 0 0 20px rgba(30, 55, 101, 0.2);
         }
 
+        .filter-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
 
+        .year-filter {
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background-color: #e1e5e9;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            margin-right: 12px;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-input:checked + .toggle-slider {
+            background-color: #1E3765;
+        }
+
+        .toggle-input:checked + .toggle-slider::before {
+            transform: translateX(26px);
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
 
         .stats {
             text-align: center;
@@ -254,6 +311,14 @@
                 padding: 12px 15px;
                 font-size: 14px;
             }
+
+            .filter-controls {
+                margin-top: 15px;
+            }
+
+            .toggle-label {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -269,6 +334,16 @@
             <div class="search-box">
                 <div class="search-input-container">
                     <input type="text" id="searchInput" class="search-input" placeholder="Search for program, residence, interests, etc">
+                </div>
+            </div>
+            
+            <div class="filter-controls">
+                <div class="year-filter">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="yearFilter" class="toggle-input">
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">Only show posts from this year</span>
+                    </label>
                 </div>
             </div>
             
@@ -393,14 +468,35 @@
             });
         }
 
+        // Check if a post is from this year (less than 52 weeks old)
+        function isPostFromThisYear(post) {
+            const postDate = new Date(post.added_at || post.date);
+            if (isNaN(postDate.getTime())) return true; // If date is invalid, include it
+            
+            const now = new Date();
+            const weekInMs = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
+            const fiftyTwoWeeksAgo = new Date(now.getTime() - (52 * weekInMs));
+            
+            return postDate >= fiftyTwoWeeksAgo;
+        }
+
         // Search functionality
         function performSearch() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const yearFilterEnabled = document.getElementById('yearFilter').checked;
             
+            let postsToFilter = allPosts;
+            
+            // Apply year filter first if enabled
+            if (yearFilterEnabled) {
+                postsToFilter = allPosts.filter(isPostFromThisYear);
+            }
+            
+            // Apply search filter
             if (!searchTerm) {
-                filteredPosts = allPosts;
+                filteredPosts = postsToFilter;
             } else {
-                filteredPosts = allPosts.filter(post => {
+                filteredPosts = postsToFilter.filter(post => {
                     const caption = (post.caption || '').toLowerCase();
                     
                     // Split search term into words and check if all words are found
@@ -416,6 +512,7 @@
         // Clear search
         function clearSearch() {
             document.getElementById('searchInput').value = '';
+            document.getElementById('yearFilter').checked = false;
             filteredPosts = allPosts;
             updateStats();
             renderPosts();
@@ -442,6 +539,7 @@
                 performSearch();
             }
         });
+        document.getElementById('yearFilter').addEventListener('change', performSearch);
 
         // Auto-focus search bar when page loads
         window.addEventListener('load', focusSearchBar);
