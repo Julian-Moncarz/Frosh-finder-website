@@ -340,7 +340,7 @@
             <div class="filter-controls">
                 <div class="year-filter">
                     <label class="toggle-container">
-                        <input type="checkbox" id="yearFilter" class="toggle-input">
+                        <input type="checkbox" id="yearFilter" class="toggle-input" checked>
                         <span class="toggle-slider"></span>
                         <span class="toggle-label">Only show posts from this year</span>
                     </label>
@@ -372,11 +372,10 @@
                 
                 const data = await response.json();
                 allPosts = data.posts || [];
-                filteredPosts = allPosts;
                 isLoading = false;
                 
-                updateStats();
-                renderPosts();
+                // Apply initial filtering based on default state (year filter is checked by default)
+                performSearch();
             } catch (error) {
                 console.error('Error loading posts:', error);
                 document.getElementById('postsContainer').innerHTML = 
