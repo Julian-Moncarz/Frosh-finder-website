@@ -1,6 +1,21 @@
 {
-  "total_posts": 1863,
+  "total_posts": 1866,
   "posts": [
+    {
+      "caption": "Hi!! My name is Megan Garay and I’m studying architecture with the Daniel’s faculty. I love to dance, watch sitcoms and reality tv and hang out with my friends. I’m staying in res at st mikes and looking for a roommate so feel free to reach out!! @megan_garay9",
+      "post_url": "https://www.instagram.com/p/DMO9dZcN2_J",
+      "added_at": "2025-07-18T09:25:56.053325"
+    },
+    {
+      "caption": "Hey I’m Parker I’m from brantford Ontario, I’ll be attending UofT St. George studying Mechanical engineering and will be living at Chestnut. I love motorsports and anything associated with it and I race go karts out of Hamilton Ontario, I also love the jays, and hope to make it to a few jays games and concerts this year. I’m trying to meet as many people as I can at school so feel free to reach out @parkerpiekosz336",
+      "post_url": "https://www.instagram.com/p/DMOYxoxPkV0",
+      "added_at": "2025-07-18T09:25:56.053391"
+    },
+    {
+      "caption": "hey!! my name’s brynn, i’m going to utsg for kinesiology and staying at loretto. i love travelling, hanging w friends, and competitive dance. i’m also looking for a roommate! can’t wait to meet everyone :) @brynn._parker",
+      "post_url": "https://www.instagram.com/p/DMNWvySOSA4",
+      "added_at": "2025-07-18T09:25:56.053428"
+    },
     {
       "caption": "Hey! My name is Emily and I am from Toronto Ontario, I am studying Social Sciences at Uoft St. George. My interests include vinyls, music, philosophy and exploring the city one cafe at a time! Would love to make some amazing friends here and I’m so excited to be a part of the uoft community!! My @ is @emily_tripp07 , feel free to reach out!!",
       "post_url": "https://www.instagram.com/p/DMMRDoMNGbL",
@@ -9319,5 +9334,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-07-17T09:25:59.161718"
+  "last_updated": "2025-07-18T09:25:56.054685"
 }
