@@ -20,7 +20,7 @@ UPDATE: The site now automatically loads new posts!
 
 ## Contact
 
-Created by Julian Moncarz (inverted_badger on Discord).
+Created by Julian Moncarz (inverted_badger_ on Discord).
 
 ## License
 
