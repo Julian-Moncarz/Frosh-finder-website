@@ -1,6 +1,16 @@
 {
-  "total_posts": 1933,
+  "total_posts": 1935,
   "posts": [
+    {
+      "caption": "hiiii! My name is Erica, I’m from Newfoundland and I’ll be studying forensic science at the Mississauga campus! I’m super excited to be starting this new chapter and meeting new, amazing people. I love hockey, cars, and my dog storm of course! Can’t wait to meet everyone! @ericalovelesss",
+      "post_url": "https://www.instagram.com/p/DN1OXYt5J6O",
+      "added_at": "2025-08-27T09:21:00.840088"
+    },
+    {
+      "caption": "So my caption is: Hi y’all, my name is Martin and I will be studying Psychology at utm. Some things I enjoy doing are travelling, shopping, building things, and tiktok. Im so excited to meet new friends so feel free to stop by and make a tiktok with me! 📱⬇️: ig: @martin_.z_ tt: @_martin_.z sc: @martinn.zh",
+      "post_url": "https://www.instagram.com/p/DN1OScRZP-9",
+      "added_at": "2025-08-27T09:21:00.840146"
+    },
     {
       "caption": "Hey, I’m Victoria (Vic or Vicky — whichever’s easier for you). I’ll be starting Commerce at UTM this fall. I was born in Vancouver, BC, and grew up between Canada and China (Yantai). I love arts, singing, and dancing. For fun, I swim, hike, and play basketball. I’m pretty open-minded and love trying new things — I got into volleyball, soccer, rock climbing, and a whole bunch because of my friends. I’m not exactly great at them, but I’m always up for more with new friends. Feel free to reach out anytime @v1ky_lee",
       "post_url": "https://www.instagram.com/p/DNzfTVLWgqC",
@@ -9669,5 +9679,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-08-26T09:22:15.419167"
+  "last_updated": "2025-08-27T09:21:00.841242"
 }
