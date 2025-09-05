@@ -1,6 +1,11 @@
 {
-  "total_posts": 2046,
+  "total_posts": 2047,
   "posts": [
+    {
+      "caption": "You guys had a great time last week 🙌🏻 It was such a wild night 🔥 Each and every week 🎉 Red Cup Thursday, we will see you at Amore 🫶🏻 Are you excited for today? ❤️",
+      "post_url": "https://www.instagram.com/p/DOLfaVTjq9H",
+      "added_at": "2025-09-05T09:20:34.582031"
+    },
     {
       "caption": "Too Hot to Handle is right at the corner 🙌🏻 Are you ready for the Biggest Homecoming in Toronto 🔥 Are you ready for this? Or is it too hot for you to handle ❤️",
       "post_url": "https://www.instagram.com/p/DOJrTZxDhks",
@@ -10234,5 +10239,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-09-04T09:20:23.156951"
+  "last_updated": "2025-09-05T09:20:34.583178"
 }
