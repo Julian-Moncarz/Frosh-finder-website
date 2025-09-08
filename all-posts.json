@@ -1,6 +1,11 @@
 {
-  "total_posts": 2048,
+  "total_posts": 2049,
   "posts": [
+    {
+      "caption": "hii i’m cindy! i’m studying statistics at st. george (new college) and ive lived in toronto all my life so if you need someone to show you around the city lmk... i love drawing, painting, kpop, karaoke, vocaloid, animals, extremely spicy food, and shopping/fashion. my favourite artists currently are nct, xg, aespa, ive, enhypen, crystal castles, and system of a down. i am really excited to make new friends so please do reach out!!! :3 main @maaiyen art @nak9yu",
+      "post_url": "https://www.instagram.com/p/DOT7nl_jtyC",
+      "added_at": "2025-09-08T09:23:03.588939"
+    },
     {
       "caption": "We’re throwing it back to the 2000s — low rise jeans, shiny fits, flip phones, bedazzled everything 🦋👛📸. Come dressed to slay in your best Y2K look because… 👗 Outfit Contest → Winner takes home a Labubu blindbox 🎁 (yes, it’s your time to shine ✨). 🎟️ Early Bird tickets from just $10 limited quantity, first come first serve. Once they’re gone, they’re gone.",
       "post_url": "https://www.instagram.com/p/DORpZdVgaJI",
@@ -10244,5 +10249,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-09-07T09:16:59.977016"
+  "last_updated": "2025-09-08T09:23:03.590041"
 }
