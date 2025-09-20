@@ -1,6 +1,11 @@
 {
-  "total_posts": 2057,
+  "total_posts": 2058,
   "posts": [
+    {
+      "caption": "Average UofT students after finish first three weeks 🫡",
+      "post_url": "https://www.instagram.com/p/DOyhbK_Dse7",
+      "added_at": "2025-09-20T09:18:08.574682"
+    },
     {
       "caption": "Highlight from our last event, do you see yourself in those or your friends in it, more videos are on the way 🙌🏻 Are you ready for our next one Y2Slay? 🔥🔥",
       "post_url": "https://www.instagram.com/p/DOt0tyQEkVc",
@@ -10289,5 +10294,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-09-18T09:20:43.737467"
+  "last_updated": "2025-09-20T09:18:08.575757"
 }
