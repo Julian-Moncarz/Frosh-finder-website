@@ -1,6 +1,11 @@
 {
-  "total_posts": 2068,
+  "total_posts": 2069,
   "posts": [
+    {
+      "caption": "Hot Ghoul Halloween party at Amore Nights @uoft_frosh.29 Tickets: https://www.eventbrite.ca/e/hot-ghoul-halloween-halloween-party-oct-30-tickets-1727376261899?aff=oddtdtcreator&fbclid=PAb21jcANfvKlleHRuA2FlbQIxMQABp4D4uzbgUuw7jcVAo8AuRhWkMLNwjwmeFvz9rxJOevU_evCrISmFHJtQmiOc_aem_QfCs_CTUkI12yLeoBwmw1g",
+      "post_url": "https://www.instagram.com/p/DP7jZPAjGAk_4BCWmCY3bW8YkTEhGWb4Htmko40",
+      "added_at": "2025-10-19T09:17:48.340268"
+    },
     {
       "caption": "Tonight is the night 🔥 Are you ready to shine and glow 🎉",
       "post_url": "https://www.instagram.com/p/DPoi9xLjrwq",
@@ -10344,5 +10349,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-10-11T09:17:31.694141"
+  "last_updated": "2025-10-19T09:17:48.341289"
 }
