@@ -1,6 +1,11 @@
 {
-  "total_posts": 2071,
+  "total_posts": 2072,
   "posts": [
+    {
+      "caption": "Haunted House Party @ Amore Nights, code \"konrad\" @uoft_frosh.29",
+      "post_url": "https://www.instagram.com/p/DQTKC2BjbJDyPviwHt5TPRgHTMI7mzGDbeG9XA0",
+      "added_at": "2025-10-28T09:22:20.746398"
+    },
     {
       "caption": "The One and Only university Halloween Party on Oct 31 arrived 🔥🔥 Amore Nightclub | Oct 31 Fri | 17+ 🎉 This will be an epic night to party with your friends 🔥 Caught in the chase, lost in the vibe 🙌🏻",
       "post_url": "https://www.instagram.com/p/DQSZnusjjB_",
@@ -10359,5 +10364,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-10-27T09:25:26.715229"
+  "last_updated": "2025-10-28T09:22:20.747318"
 }
