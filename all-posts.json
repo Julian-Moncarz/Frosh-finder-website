@@ -1,6 +1,11 @@
 {
-  "total_posts": 2073,
+  "total_posts": 2074,
   "posts": [
+    {
+      "caption": "Hot Ghoul Halloween '25 @amorenights code konrad",
+      "post_url": "https://www.instagram.com/p/DQe0hGfEdLiCHMqzkwoT9u_uQ50A8mP6T98MsM0",
+      "added_at": "2025-11-01T09:18:51.303735"
+    },
     {
       "caption": "🎃 BIG GIVEAWAY for Hunted House Halloween! 👻 We’re giving away a $390 bottle to one lucky winner for our Halloween Party this Friday 🔥 This is our biggest party of the year, and we want to thank you all for the love and support 🙌🏻 How to enter: 1️⃣ Share this post to your story 2️⃣ Tag your friends who are coming with you this Friday 💃 Winner will be announced thru raffle on Friday morning — just in time to start your night right 🍾",
       "post_url": "https://www.instagram.com/p/DQX_7QEDfkC",
@@ -10369,5 +10374,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-10-29T09:21:45.933913"
+  "last_updated": "2025-11-01T09:18:51.304682"
 }
