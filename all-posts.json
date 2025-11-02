@@ -1,6 +1,11 @@
 {
-  "total_posts": 2074,
+  "total_posts": 2075,
   "posts": [
+    {
+      "caption": "6ixclub's debut event was the talk of the town. Looking forward to creating amazing memories with you all in the future. Big shout out to @tmu_2029 @uoft_frosh.29 @yorku_2029 for an amazing partnership.",
+      "post_url": "https://www.instagram.com/p/DQhz15AEvHP",
+      "added_at": "2025-11-02T09:18:14.612903"
+    },
     {
       "caption": "Hot Ghoul Halloween '25 @amorenights code konrad",
       "post_url": "https://www.instagram.com/p/DQe0hGfEdLiCHMqzkwoT9u_uQ50A8mP6T98MsM0",
@@ -10374,5 +10379,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-11-01T09:18:51.304682"
+  "last_updated": "2025-11-02T09:18:14.613866"
 }
