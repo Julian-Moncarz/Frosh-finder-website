@@ -1,6 +1,11 @@
 {
-  "total_posts": 2078,
+  "total_posts": 2079,
   "posts": [
+    {
+      "caption": "Another batch of Halloween photos arrived 🎃👻 Are you ready for next week the last one of the semester? 🔥",
+      "post_url": "https://www.instagram.com/p/DQ0Z8cgDV0f",
+      "added_at": "2025-11-09T09:18:27.144949"
+    },
     {
       "caption": "Halloween Party recap 🎃👻 It was such an amazing night 🔥 More photos in bio link, see if you can find yourself 🙌🏻 Are you ready for our last one 🎉 Last have fun for our One Last Dance 🪩",
       "post_url": "https://www.instagram.com/p/DQxPviXkplx",
@@ -10394,5 +10399,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-11-08T09:18:55.462687"
+  "last_updated": "2025-11-09T09:18:27.145900"
 }
