@@ -1,6 +1,11 @@
 {
-  "total_posts": 2081,
+  "total_posts": 2082,
   "posts": [
+    {
+      "caption": "A crazy night to close out the semester. Only the ones who stayed got to enjoy the fruits of our labour, the rest just heard about it. 😮‍💨",
+      "post_url": "https://www.instagram.com/p/DRGhhJoDkSv",
+      "added_at": "2025-11-17T09:26:15.054952"
+    },
     {
       "caption": "Tmr night, the last one event of this year🔥🔥 Make sure you don’t miss out🙌🏻 After this gotta lock-in for finals 💪🏻",
       "post_url": "https://www.instagram.com/p/DRBcxQHjQWJ",
@@ -10409,5 +10414,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-11-14T09:22:56.419435"
+  "last_updated": "2025-11-17T09:26:15.055842"
 }
