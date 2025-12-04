@@ -1,6 +1,11 @@
 {
-  "total_posts": 2082,
+  "total_posts": 2083,
   "posts": [
+    {
+      "caption": "NEON FROST ❄️✨ Christmas glow meets New Year’s energy — all in one night. We’re lighting up Amore Nightclub with neon vibes, icy beats, and a dance floor that won’t cool down. Let’s close out 2025 the right way — bright, loud, and unforgettable. 💙💜 Dec 26. One night only. Don’t miss the frost.",
+      "post_url": "https://www.instagram.com/p/DR06QzZDdVw",
+      "added_at": "2025-12-04T09:26:27.348154"
+    },
     {
       "caption": "A crazy night to close out the semester. Only the ones who stayed got to enjoy the fruits of our labour, the rest just heard about it. 😮‍💨",
       "post_url": "https://www.instagram.com/p/DRGhhJoDkSv",
@@ -10414,5 +10419,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-11-17T09:26:15.055842"
+  "last_updated": "2025-12-04T09:26:27.349013"
 }
