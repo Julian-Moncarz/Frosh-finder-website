@@ -1,6 +1,11 @@
 {
-  "total_posts": 2087,
+  "total_posts": 2088,
   "posts": [
+    {
+      "caption": "A night to remember. Thank you to everyone who came out to our Christmas event 🎄had an amazing crowd full with energy, make sure y’all let you’re voices recover.",
+      "post_url": "https://www.instagram.com/p/DSiclqYkXrw",
+      "added_at": "2025-12-22T09:30:05.108144"
+    },
     {
       "caption": "This Friday 🔥 Neon Frost ❄️ Are you ready to end your semester with the littest party 🔥🔥 Have one last crazy fun with your friends b4 you back home 🙌🏻",
       "post_url": "https://www.instagram.com/p/DSV9cYMjen9",
@@ -10439,5 +10444,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2025-12-17T09:29:22.737799"
+  "last_updated": "2025-12-22T09:30:05.108974"
 }
