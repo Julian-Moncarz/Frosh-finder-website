@@ -1,6 +1,11 @@
 {
-  "total_posts": 2094,
+  "total_posts": 2095,
   "posts": [
+    {
+      "caption": "Tomorrow is the night 🎉 Winter is cold, but the vibe inside the club is hottt 🔥 Are you ready for a crazy night with your friends 🎉 Winter Reboot ❄️ See you all there 🙌🏻",
+      "post_url": "https://www.instagram.com/p/DT1Hu_mkga2",
+      "added_at": "2026-01-23T09:32:05.104549"
+    },
     {
       "caption": "After the longest wait 🙌🏻 This Friday 🔥 Winter Reboot ❄️ You def don’t wanna miss out this lit party 🎉🔥 Link in bio",
       "post_url": "https://www.instagram.com/p/DTwFa3ODcZ8",
@@ -10474,5 +10479,5 @@
   ],
   "cleaned_at": "2025-07-12T15:28:43.210448",
   "original_backup": "all-posts-backup-before-cleaning.json",
-  "last_updated": "2026-01-21T09:34:30.454117"
+  "last_updated": "2026-01-23T09:32:05.105347"
 }
