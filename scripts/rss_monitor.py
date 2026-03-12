@@ -172,7 +172,7 @@ class RSSMonitor:
                 try:
                     dt = date_parser.parse(pub_date)
                     timestamp = dt.isoformat()
-                except:
+                except Exception:
                     timestamp = pub_date
             
             # Create post object for RSS tracking
@@ -270,7 +270,7 @@ class RSSMonitor:
                     last_check_time = date_parser.parse(last_check)
                     if entry_time <= last_check_time:
                         is_new = False
-                except:
+                except Exception:
                     pass  # If parsing fails, consider it new
             
             if is_new:
