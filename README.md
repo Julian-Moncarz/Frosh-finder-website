@@ -17,11 +17,3 @@ UPDATE: The site now automatically loads new posts!
 1. Instagram posts from @uoft_frosh.29 are converted to a RSS feed using [rss.app](https://rss.app)
 2. GitHub Actions workflow runs every day at 9 AM UTC
 3. Python script fetches new posts and and adds them to all-posts.json
-
-## Contact
-
-Created by Julian Moncarz (inverted_badger_ on Discord).
-
-## License
-
-This project is open source and available under the MIT License.
