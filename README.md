@@ -1,5 +1,7 @@
 # U of T Frosh Finder
 
+<img width="1710" height="1063" alt="Screenshot 2026-05-24 at 5 11 14 PM" src="https://github.com/user-attachments/assets/3dcad42b-4a8e-449f-8b27-c28bb1cce6f6" />
+
 live site: https://julian-moncarz.github.io/Frosh-finder-website/
 
 A searchable web interface for University of Toronto frosh introduction posts from the @uoft_frosh.29 Instagram account.
